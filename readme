@@ -1,0 +1,54 @@
+Create WEB API:
+
+"dotnet new sln -n cms_solution"
+"dotnet new webapi -o API"
+
+"dotnet sln cms_solution.sln add API\API.csproj"
+------------------------------------------------------------------------------
+
+Use Extension methods to arrange `Program.cs` class
+Create ProjectStartup foler put `services & configuration` into it 
+------------------------------------------------------------------------------
+
+Setup Entity Framework by adding `ApplicationDbContext : DbContext` class
+------------------------------------------------------------------------------
+
+add connection string to 'appsettings.Development.json' file
+------------------------------------------------------------------------------
+
+install dotnet-ef using command
+"dotnet tool install --global dotnet-ef --version 7.0.2"
+Add migration using command 
+"dotnet ef migrations add InitialCreate -o Data/Migrations"
+------------------------------------------------------------------------------
+
+update database using command
+"dotnet ef database update"
+------------------------------------------------------------------------------
+
+seperate project to many mini projects.
+"dotnet new classlib -o Core"
+"dotnet new classlib -o Infrastructure"
+"dotnet sln mysolution.sln  add Core\Core.csproj"
+"dotnet sln cms_solution.sln  add Infrastructure\Infrastructure.csproj"
+------------------------------------------------------------------------------
+relate projects with each other:
+Core -> Infrastructure > API
+C:\Users\Raed\Desktop\ecommerce\API> "dotnet add reference ../Infrastructure"
+C:\Users\Raed\Desktop\ecommerce\Infrastructure> "dotnet add reference ../Core"
+------------------------------------------------------------------------------
+
+transfer Entities to Core, Data to Infrastructure, 
+and resolve using of library if we use vs code.
+------------------------------------------------------------------------------
+
+hide obj and bin file form our solution
+vs code setting -> exclude -> add pattern
+------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------
+
