@@ -50,7 +50,7 @@ git init
 git add .
 git commit -m "Initial commit"
 git remote add origin https://github.com/raedalifarhan/ecommerce.git
-git push -u origin main
+git push
 ------------------------------------------------------------------------------
 
 
