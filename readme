@@ -46,7 +46,11 @@ hide obj and bin file form our solution
 vs code setting -> exclude -> add pattern
 ------------------------------------------------------------------------------
 
-
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/raedalifarhan/ecommerce.git
+git push -u origin main
 ------------------------------------------------------------------------------
 
 
