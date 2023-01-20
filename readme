@@ -52,7 +52,11 @@ git commit -m "Initial commit"
 git remote add origin https://github.com/raedalifarhan/ecommerce.git
 git push
 ------------------------------------------------------------------------------
+Use fluent validation (better than validation annotation)
 
-
+1- add this two lines to services:
+builder.Services.AddFluentValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<ProductValidator>();
+2- Create 'Validations' folder and 'ProductValidator : AbstractValidator<Product>' class
 ------------------------------------------------------------------------------
 
