@@ -60,3 +60,13 @@ builder.Services.AddValidatorsFromAssemblyContaining<ProductValidator>();
 2- Create 'Validations' folder and 'ProductValidator : AbstractValidator<Product>' class
 ------------------------------------------------------------------------------
 
+drop database:
+-p === project
+-s === start project
+"dotnet ef database drop -p Infrastructure -s API"
+remove migrations:
+"dotnet ef migrations remove -p Infrastructure -s API"
+
+------------------------------------------------------------------------------
+Add migration:
+"dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations"
