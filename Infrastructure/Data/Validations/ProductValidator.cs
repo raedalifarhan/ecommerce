@@ -10,13 +10,13 @@ namespace Core.Validations
         {
             RuleFor(product => product.Name)
             .NotNull()
-            .Length(5, 255)
-            .Must(beValidName);
+            .Length(5, 255);
+            //.Must(beValidName);
         }
 
-        private bool beValidName(string name)
-        {
-            return name.All(char.IsLetter);
-        }
+        // private bool beValidName(string name)
+        // {
+        //     return name.All(char.IsLetter);
+        // }
     }
 }

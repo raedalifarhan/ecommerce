@@ -27,15 +27,7 @@ namespace API.ProjectStartup
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            // // Add services to the container.
-            // builder.Services.AddScoped<IBookService, BookService>();
-
-            // builder.Services.AddDbContext<ApplicationDbContext>(option =>
-            //     option.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionDb"))
-            // );
-
             // builder.Services.AddAutoMapper(typeof(Program));
-            // builder.Services.AddControllersWithViews();
 
             return builder;
         }
