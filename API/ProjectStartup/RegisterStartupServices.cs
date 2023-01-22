@@ -16,10 +16,17 @@ namespace API.ProjectStartup
         {
 
             // Add services to the container.
+
+            // Custom Dependancy Injection of Repositories
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            // Add Fluent Validation
             builder.Services.AddFluentValidation();
             builder.Services.AddValidatorsFromAssemblyContaining<ProductValidator>();
+
             builder.Services.AddControllers();
+            // Add SQL Server Connection String
             builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(
                 builder.Configuration.GetConnectionString("ConnectionDb")
             ));
