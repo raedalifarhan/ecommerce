@@ -1,5 +1,6 @@
 
 
+using API.Helpers;
 using Core.Interfaces;
 using Core.Validations;
 using FluentValidation;
@@ -21,6 +22,9 @@ namespace API.ProjectStartup
             // Custom Dependancy Injection of Repositories
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            //
+            builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
             // Add Fluent Validation
             builder.Services.AddFluentValidation();

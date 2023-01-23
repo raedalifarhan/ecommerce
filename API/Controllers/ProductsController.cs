@@ -1,4 +1,6 @@
 
+using API.Dtos;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
@@ -10,35 +12,40 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
+        private readonly IGenericRepository<Product> _productRepo;
         private readonly IGenericRepository<ProductBrand> _productBrandRepo;
         private readonly IGenericRepository<ProductType> _productTypeRepo;
-        public IGenericRepository<Product> _productRepo { get; }
+        private readonly IMapper _mapper;
 
         public ProductsController(IGenericRepository<Product> productRepo,
         IGenericRepository<ProductBrand> productBrandRepo,
-        IGenericRepository<ProductType> productTypeRepo)
+        IGenericRepository<ProductType> productTypeRepo,
+        IMapper mapper)
         {
             _productRepo = productRepo;
             _productTypeRepo = productTypeRepo;
             _productBrandRepo = productBrandRepo;
+            _mapper = mapper;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
+            var product = await _productRepo.GetEntityWithSpecAsync(spec);
 
-            return Ok(
-                await _productRepo.GetEntityWithSpecAsync(spec)
-                );
+            return _mapper.Map<Product, ProductDto>(product);
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<ProductDto>>> GetProducts()
         {
             var spec = new ProductsWithTypesAndBrandsSpecification();
 
-            return Ok(await _productRepo.ListAsync(spec));
+            var products = await _productRepo.ListAsync(spec);
+
+            return Ok(_mapper
+                .Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(products));
         }
 
         [HttpPost]
