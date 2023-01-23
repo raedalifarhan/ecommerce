@@ -5,6 +5,7 @@ using Core.Validations;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Infrastructure.Data;
+using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.ProjectStartup
