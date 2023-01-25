@@ -1,17 +1,18 @@
 
+using API.Middleware;
+
 namespace API.ProjectStartup
 {
     public static class RegisterStartupMiddlewares
     {
         public static WebApplication SetupMiddleware(this WebApplication app)
         {
+            app.UseMiddleware<ExceptionMiddleware>();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
             app.UseHttpsRedirection();
 
